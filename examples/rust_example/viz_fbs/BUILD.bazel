@@ -1,0 +1,15 @@
+load("@rules_flatbuffers//flatbuffers:flatbuffers_library.bzl", "flatbuffers_library")
+load("@rules_flatbuffers//flatbuffers:rust_flatbuffers_library.bzl", "rust_flatbuffers_library")
+
+flatbuffers_library(
+  name = "viz_fbs",
+  srcs = ["marker.fbs"],
+  deps = ["//geom_fbs"],
+  visibility = ["//visibility:public"],
+)
+
+rust_flatbuffers_library(
+    name = "viz_rust_fbs",
+    deps = [":viz_fbs"],
+    visibility = ["//visibility:public"],
+)

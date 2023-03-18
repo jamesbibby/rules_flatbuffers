@@ -1,0 +1,7 @@
+rust_binary(
+    name = "rust_example",
+    srcs = ["main.rs"],
+    deps = [
+        "//viz_fbs:viz_rust_fbs",
+    ],
+)

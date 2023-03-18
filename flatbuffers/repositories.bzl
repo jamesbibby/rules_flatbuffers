@@ -11,6 +11,14 @@ load(
     "CC_LANG_SHORTNAME",
 )
 load(
+    "//flatbuffers/toolchain_defs:rust_defs.bzl",
+    "RUST_LANG_DEFAULT_EXTRA_FLATC_ARGS",
+    "RUST_LANG_DEFAULT_RUNTIME",
+    "RUST_LANG_FLATC_ARGS",
+    "RUST_LANG_REPO",
+    "RUST_LANG_SHORTNAME",
+)
+load(
     "//flatbuffers/toolchain_defs:schema_defs.bzl",
     "SCHEMA_LANG_FLATC_ARGS",
     "SCHEMA_LANG_REPO",
@@ -44,6 +52,16 @@ def flatbuffers_toolchain(flatc = FLATBUFFERS_TOOLCHAIN_DEFAULT_FLATC):
         name = SCHEMA_LANG_REPO,
         lang_shortname = SCHEMA_LANG_SHORTNAME,
         flatc_args = SCHEMA_LANG_FLATC_ARGS,
+    )
+
+def flatbuffers_rust_toolchain(
+        runtime = RUST_LANG_DEFAULT_RUNTIME,
+        extra_flatc_args = RUST_LANG_DEFAULT_EXTRA_FLATC_ARGS):
+    flatbuffers_lang_toolchain_gen(
+        name = RUST_LANG_REPO,
+        lang_shortname = RUST_LANG_SHORTNAME,
+        flatc_args = RUST_LANG_FLATC_ARGS + extra_flatc_args,
+        runtime = runtime,
     )
 
 def flatbuffers_cc_toolchain(
